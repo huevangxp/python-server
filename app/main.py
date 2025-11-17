@@ -12,7 +12,9 @@ app.include_router(user_router)
 
 @app.get("/favicon.ico")
 async def favicon():
-    return Response(status_code=204) 
+    return Response(status_code=204)
+
+@app.get("/")
 def home():
     return {"message": "API is running"}
 
