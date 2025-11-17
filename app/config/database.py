@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # PostgreSQL connection string
-DATABASE_URL = "postgresql+psycopg://postgres:password@localhost:5432/mydb"
+DATABASE_URL = "postgresql+psycopg://postgres:huevangxp@localhost:5432/fastapi"
 # If you use psycopg2:
 # DATABASE_URL = "postgresql+psycopg2://postgres:password@localhost:5432/mydb"
 
