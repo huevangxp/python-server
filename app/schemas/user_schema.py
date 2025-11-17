@@ -6,11 +6,5 @@ class UserBase(BaseModel):
     email: str
     password: str | None = None
 
-class UserCreate(UserBase):
-    pass
-
-class UserResponse(UserBase):
-    id: int
-
     class Config:
         orm_mode = True
