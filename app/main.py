@@ -25,8 +25,8 @@ Base.metadata.create_all(bind=engine)
 app.include_router(user_router)
 
 @app.get("/")
-def home():
-    return {"message": "API is running", "status": "healthy"}
+# def home():
+#     return {"message": "API is running", "status": "healthy"}
 
 if __name__ == "__main__":
     import uvicorn
