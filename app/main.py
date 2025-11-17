@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.routers.user_router import router as user_router
 from app.config.database import Base, engine
+from fastapi.responses import Response
 
 app = FastAPI()
 
