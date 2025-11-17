@@ -1,13 +1,19 @@
-import fastapi
+from fastapi import FastAPI
+from app.routers.user_router import router as user_router
+from app.config.database import Base, engine
 
-app = fastapi.FastAPI()
+app = FastAPI()
 
+# Create tables automatically
+Base.metadata.create_all(bind=engine)
+
+# Routers
+app.include_router(user_router)
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
+def home():
+    return {"message": "API is running"}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="10.2.10.12", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
