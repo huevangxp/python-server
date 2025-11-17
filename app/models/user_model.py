@@ -8,3 +8,6 @@ class User(Base):
     username = Column(String(100), unique=True, index=True)
     email = Column(String(200), unique=True)
     password = Column(String(200))
+    
+    def __repr__(self):
+        return f"User(username={self.username}, email={self.email})"
