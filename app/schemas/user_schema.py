@@ -4,7 +4,7 @@ class UserBase(BaseModel):
     id: int
     username: str
     email: str
-    password: str
+    password: str | None = None
 
 class UserCreate(UserBase):
     pass
