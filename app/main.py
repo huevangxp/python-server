@@ -10,7 +10,9 @@ Base.metadata.create_all(bind=engine)
 # Routers
 app.include_router(user_router)
 
-@app.get("/")
+@app.get("/favicon.ico")
+async def favicon():
+    return Response(status_code=204) 
 def home():
     return {"message": "API is running"}
 
