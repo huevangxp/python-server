@@ -1,11 +1,25 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from app.routers.user_router import router as user_router
 from app.config.database import Base, engine
-from fastapi.responses import Response
+import os
 
-app = FastAPI()
+app = FastAPI(
+    title="Your API",
+    version="1.0.0"
+)
 
-# Create tables automatically
+# CORS (adjust for production)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Create tables automatically (use Alembic in production)
 Base.metadata.create_all(bind=engine)
 
 # Routers
@@ -17,8 +31,12 @@ async def favicon():
 
 @app.get("/")
 def home():
-    return {"message": "API is running"}
+    return {"message": "API is running", "status": "healthy"}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="10.2.10.12", port=8000)
+    uvicorn.run(
+        app, 
+        host=os.getenv("HOST", "0.0.0.0"),
+        port=int(os.getenv("PORT", 8000))
+    )
